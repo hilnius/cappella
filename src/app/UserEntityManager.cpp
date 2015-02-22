@@ -17,6 +17,6 @@ UserEntityManager::~UserEntityManager()
 }
 
 std::vector<Page*> UserEntityManager::getUserPages(const User* user) {
-  cout << "loading pages for user" << endl;
+  cout << "UserEntityManager: Getting user pages" << endl;
   return PageEntityManager::getInstance()->getRelated<INTEGER<12>>("userId", &Page::getUserId, user->getId());
 }

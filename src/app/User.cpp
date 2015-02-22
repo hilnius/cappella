@@ -39,5 +39,4 @@ INTEGER<12> User::getId() const
 void User::setId(INTEGER<12> id)
 {
   p_id = id;
-  std::cout << " value of user id is " << p_id << " from " << id << std::endl;
 }
