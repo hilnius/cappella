@@ -1,10 +1,12 @@
 #ifndef INTEGER_H_INCLUDED
 #define INTEGER_H_INCLUDED
 
+#include "common/JSONSerializable.hpp"
 #include <sstream>
+#include <string>
 
 template<int N>
-class INTEGER
+class INTEGER: public JSONSerializable
 {
   public:
     INTEGER(int value = 0) { p_value = value; }
@@ -13,7 +15,11 @@ class INTEGER
     bool operator==(const INTEGER& other) { return other.p_value == p_value; }
 
     int toInt() const { return p_value; }
+    std::string toString() const { return std::to_string(p_value); }
+    virtual std::string toJSON(std::vector<std::string> wantedFields = std::vector<std::string>(0)) const { return toString(); }
 
+  protected:
+    virtual std::map<std::string, const JSONSerializable*> getSerializedData() const { return {}; }
   private:
     int p_value;
 };

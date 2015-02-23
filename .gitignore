@@ -30,6 +30,9 @@
 # Build folder
 build/
 
+# Dependencies folder
+deps/
+
 # IDE-specific files
 *.cbp
 *.depend

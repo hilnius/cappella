@@ -35,7 +35,6 @@ class EntityManager
       p_entities.push_back(entity);
     }
 
-  private:
     std::vector<T*> p_entities;
 };
 

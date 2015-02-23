@@ -7,7 +7,7 @@
 class Page;
 class UserEntityManager;
 
-class User: public SQLEntity
+class User: public SQLEntity, public JSONSerializable
 {
   public:
     User();
@@ -15,10 +15,18 @@ class User: public SQLEntity
 
     static UserEntityManager* getEntityManager();
     int getTotalPageViews();
-    INTEGER<12> getId() const;
+
     void setId(INTEGER<12> id);
+    void setName(STRING<255> name);
+
+    INTEGER<12> getId() const;
+    STRING<255> getName() const;
+    MANY<Page>* getPages();
 
     static std::string getTableName() { return "users"; }
+
+  protected:
+    virtual std::map<std::string, const JSONSerializable*> getSerializedData() const;
 
   private:
     INTEGER<12> p_id;

@@ -22,13 +22,21 @@ UserEntityManager* User::getEntityManager() {
 int User::getTotalPageViews()
 {
   int views = 0;
-  std::cout << "START PAGE VIEW COUNT" << std::endl;
   for (unsigned int i = 0; i < p_pages.size(); i++)
   {
     views += p_pages[i]->getPageViews();
   }
-  std::cout << "END PAGE VIEW COUNT" << std::endl;
   return views;
+}
+
+void User::setId(INTEGER<12> id)
+{
+  p_id = id;
+}
+
+void User::setName(STRING<255> name)
+{
+  p_name = name;
 }
 
 INTEGER<12> User::getId() const
@@ -36,7 +44,22 @@ INTEGER<12> User::getId() const
   return p_id;
 }
 
-void User::setId(INTEGER<12> id)
+STRING<255> User::getName() const
 {
-  p_id = id;
+  return p_name;
+}
+
+MANY<Page>* User::getPages()
+{
+  return &p_pages;
+}
+
+
+std::map<std::string, const JSONSerializable*> User::getSerializedData() const
+{
+  std::map<std::string, const JSONSerializable*> result;
+  result["name"] = &p_name;
+  result["id"] = &p_id;
+  result["pages"] = &p_pages;
+  return result;
 }

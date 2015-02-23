@@ -10,6 +10,7 @@ class PageEntityManager: public EntityManager<Page>, public Singleton<PageEntity
 {
   friend class Singleton<PageEntityManager>;
   public:
+    virtual void load();
 
   protected:
     PageEntityManager();
