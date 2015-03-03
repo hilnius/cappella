@@ -36,3 +36,5 @@ deps/
 # IDE-specific files
 *.cbp
 *.depend
+*.layout
+
